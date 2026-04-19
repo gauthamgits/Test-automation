@@ -12,10 +12,14 @@ from utils.apiBaseframework import apiutils
 from pageObjects.loginPage import LoginPage
 
 
-with open('Data/credentials.json') as f:
+from pathlib import Path
+import json
+
+DATA_FILE = Path(__file__).resolve().parent / "Data" / "credentials.json"
+
+with open(DATA_FILE) as f:
     test_data = json.load(f)
-    print(test_data)
-    test_cred_list=test_data['credentials']
+    test_cred_list = test_data["credentials"]
 
 @pytest.mark.smoke
 @pytest.mark.parametrize('user_credentials',test_cred_list)
